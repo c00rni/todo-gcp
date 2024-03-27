@@ -53,7 +53,7 @@ export default function TaskItem({task, onChange}: TaskItemProps) {
 
     return (
         <>
-            <div ref={setNodeRef} id={task.id.toString()} style={style} {...attributes} {...listeners} className={`${theme ? "bg-white" : "bg-darkBlue"} z-10 p-4 lg:p-5 flex items-center gap-3 rouneded-t-[5px]`}>
+            <div ref={setNodeRef} id={task.id.toString()} style={style} {...attributes} {...listeners} className={`${theme ? "bg-white" : "bg-darkBlue"} m-4 lg:m-5 flex items-center gap-3 rouneded-t-[5px]`}>
                 <div className={`${!theme && "bg-darkBlue"} rounded-full flex flex-shrink-0 items-center justify-center z-10 cursor-pointer ${task.isCompleted ? "bg-gradient-to-br from-cyan-300 to-purple-500" : (theme ? "border border-gray-400" : "border border-darkLine")} w-[20px] h-[20px]`} onClick={modifyTask}>
                     {task.isCompleted && (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
@@ -67,6 +67,7 @@ export default function TaskItem({task, onChange}: TaskItemProps) {
                     <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                 </svg>
             </div>
+            <hr className={`${theme ? "border-grayLine": "border-darkLine"}`}/>
         </>
     )
 }
