@@ -1,6 +1,8 @@
 "use client";
 import React, { useContext } from "react";
 import { ThemeContext } from "../themeContext";
+import { useSortable } from "@dnd-kit/sortable";
+import {CSS} from '@dnd-kit/utilities';
 
 interface Task {
     id: number;
@@ -35,9 +37,23 @@ export default function TaskItem({task, onChange}: TaskItemProps) {
         });
     }
 
+    const {
+        attributes,
+        listeners,
+        setNodeRef,
+        transform,
+        transition
+    } = useSortable({id: task.id})
+
+    // Within your component that receives `transform` from `useDraggable`:
+    const style = {
+        transform: CSS.Translate.toString(transform),
+        transition
+    }
+
     return (
         <>
-            <div className={`${theme ? "bg-white" : "bg-darkBlue"} p-4 lg:p-5 flex items-center gap-3 rouneded-t-[5px]`}>
+            <div ref={setNodeRef} id={task.id.toString()} style={style} {...attributes} {...listeners} className={`${theme ? "bg-white" : "bg-darkBlue"} z-10 p-4 lg:p-5 flex items-center gap-3 rouneded-t-[5px]`}>
                 <div className={`${!theme && "bg-darkBlue"} rounded-full flex flex-shrink-0 items-center justify-center z-10 cursor-pointer ${task.isCompleted ? "bg-gradient-to-br from-cyan-300 to-purple-500" : (theme ? "border border-gray-400" : "border border-darkLine")} w-[20px] h-[20px]`} onClick={modifyTask}>
                     {task.isCompleted && (
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3">
