@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TaskForm from "./taskForm";
 import TaskTable from "./taskTable";
 import TaskFilter from "./taskFilter";
@@ -9,10 +9,10 @@ interface Task {
     isCompleted: boolean;
 }
 
+type Status = "ALL" | "ACTIVE" | "COMPLETED";
+
 export default function TaskManager() {
-    const [taskList, setTaskList] = useState<Array<Task>>([]);
-    useEffect(() => {
-        const tasks: Array<Task> = [
+    const [taskList, setTaskList] = useState<Array<Task>>([
             {
                 id: 7,
                 text: "Complete online javascript course",
@@ -43,17 +43,16 @@ export default function TaskManager() {
                 text: "Complete Todo App on Frontend Mentor",
                 isCompleted: false
             }
-        ];
-        setTaskList(tasks)
-    }, [])
+    ]);
+    const [filterStatus, setFilterStatus] = useState<Status>("ALL");
 
     return (
         <>
             <div className={`flex gap-5 flex-col shadow-xl overflow-hidden"}`}>
-                <TaskForm tasksList={taskList} setTaskList={setTaskList}/>
-                <TaskTable tasksList={taskList} setTaskList={setTaskList}/>
+                <TaskForm onTaskSubmit={setTaskList}/>
+                <TaskTable filter={filterStatus} tasksList={taskList} onTasksChange={setTaskList} onStatusChange={setFilterStatus}/>
             </div>
-            <TaskFilter />
-        </>
+            <TaskFilter status={filterStatus} onStatusChange={setFilterStatus} className="shadow-lg lg:hidden p-4"/>
+       </>
     )
 }
