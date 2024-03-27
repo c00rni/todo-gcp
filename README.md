@@ -32,6 +32,7 @@ Users should be able to:
 - Semantic HTML5 markup
 - Flexbox
 - Mobile-first workflow
+- [Dnd-kit](https://dndkit.com/) - for draggable items
 - [FireStore](https://firebase.google.com/) - for the backend
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
