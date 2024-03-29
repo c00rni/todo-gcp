@@ -9,7 +9,6 @@ interface SignInProps {
 export default function SignIn({user}: SignInProps) {
     return(
         <>
-            {user?.photoURL && console.log(user.photoURL)}
             {user ? (
                 <Image
                     onClick={signOut}

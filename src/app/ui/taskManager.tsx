@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskForm from "./taskForm";
 import TaskTable from "./taskTable";
 import TaskFilter from "./taskFilter";
+import { User } from "firebase/auth";
+import { getTasks } from "../firebase/firebase";
 
 interface Task {
     id: number;
@@ -9,9 +11,13 @@ interface Task {
     isCompleted: boolean;
 }
 
+interface TaskManagerProps {
+    user: User | null
+}
+
 type Status = "ALL" | "ACTIVE" | "COMPLETED";
 
-export default function TaskManager() {
+export default function TaskManager({user} : TaskManagerProps ) {
     const [taskList, setTaskList] = useState<Array<Task>>([
             {
                 id: 7,
@@ -46,6 +52,19 @@ export default function TaskManager() {
     ]);
     const [filterStatus, setFilterStatus] = useState<Status>("ALL");
 
+    useEffect(() => {
+        if (user) {
+            const fetchData = async () => {
+                const savedTasks = await getTasks();
+                if (!savedTasks) return [];
+                return savedTasks.tasks.map((item:any, index:number ) =>{
+                    return {id:index + 1,  ...item}
+                });
+            }
+            fetchData().then(res => setTaskList(res))
+                .catch(console.error);
+        }
+    }, [user])
     return (
         <>
             <div className={`flex gap-5 flex-col shadow-xl overflow-hidden"}`}>

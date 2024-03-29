@@ -14,6 +14,7 @@ import {
   useSensors
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+import { updateTasks } from "../firebase/firebase";
 
 interface Task {
     id: number;
@@ -35,7 +36,8 @@ export default function TaskTable({filter, tasksList, onTasksChange, onStatusCha
     const theme = useContext(ThemeContext);
 
     const clearCompleted = () => {
-        const newList = tasksList.filter(task => !task.isCompleted)
+        const newList = tasksList.filter(task => !task.isCompleted);
+        updateTasks(newList);
         onTasksChange(newList);
     }
 
@@ -63,6 +65,7 @@ export default function TaskTable({filter, tasksList, onTasksChange, onStatusCha
                 const overIndex = tasks.findIndex(task => task.id == over.id);
 
                 newList = arrayMove(tasks, activeIndex, overIndex);
+                updateTasks([...newList]);
                 return [...newList];
             });
         }

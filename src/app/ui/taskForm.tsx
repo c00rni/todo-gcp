@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import CompleteButton from "./completeButton";
 import { ThemeContext } from "../themeContext";
+import { updateTasks } from "../firebase/firebase";
 
 interface Task {
     id: number;
@@ -29,7 +30,9 @@ export default function TaskForm({onTaskSubmit}: TaskFormProps) {
                 isCompleted: isCompleted
             }
             onTaskSubmit((tasks) => {
-                return [newtask, ...tasks]
+                const newList = [newtask, ...tasks];
+                updateTasks(newList)
+                return newList;
             });
             setIsCompleted(false);
             target.text.value = "";

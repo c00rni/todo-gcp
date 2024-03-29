@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../themeContext";
 import { useSortable } from "@dnd-kit/sortable";
 import {CSS} from '@dnd-kit/utilities';
+import { updateTasks } from "../firebase/firebase";
 
 interface Task {
     id: number;
@@ -24,6 +25,7 @@ export default function TaskItem({task, onChange}: TaskItemProps) {
             const taskIndex = tasks.findIndex(item => item.id == task.id);
             const newTask = {...task, isCompleted: !task.isCompleted}
             tasks[taskIndex] = newTask;
+            updateTasks([...tasks]);
             return  [...tasks];
         });
     }
@@ -33,6 +35,7 @@ export default function TaskItem({task, onChange}: TaskItemProps) {
         onChange((tasks) => {
             const taskIndex = tasks.findIndex(item => item.id == task.id);
             tasks.splice(taskIndex, 1);
+            updateTasks([... tasks]);
             return [...tasks];
         });
     }
