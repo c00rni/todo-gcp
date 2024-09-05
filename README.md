@@ -1,10 +1,14 @@
-# Frontend Mentor - Todo app solution
+# Todo app solution
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+Simple to use interacive todo applicaiton. 
 
-## Overview
+## Motivation
 
-### The challenge
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
+
+## Usage
+
+Live solution at :  [https://www.frontendmentor.io/solutions/todo-list-with-react-B6lJmulCHf](https://www.frontendmentor.io/solutions/todo-list-with-react-B6lJmulCHf)
 
 Users should be able to:
 
@@ -18,14 +22,16 @@ Users should be able to:
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
 
+## Overview 
+
 ### Screenshot
 
 ![Screenshot of the app](./todo_screen.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/todo-list-with-react-B6lJmulCHf](https://www.frontendmentor.io/solutions/todo-list-with-react-B6lJmulCHf)
+- Live Site URL: [https://cloudtodopoc.netlify.app/](https://cloudtodopoc.netlify.app/)
 
 ### Built with
 
